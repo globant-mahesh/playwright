@@ -1,0 +1,46 @@
+{
+  "name": "playwright-fundamentals",
+  "version": "1.0.0",
+  "description": "My first project using playwright",
+  "main": "index.js",
+  "scripts": {
+    "tests:chrome": "playwright test tests/first.spec.ts --grep=@IntegrationTest --config=playwright.config.ts --project=Chromium --reporter=html",
+    "tests:firefox": "playwright test tests/first.spec.ts --grep=@IntegrationTest --config=playwright.config.ts --project=Firefox --reporter=html",
+    "tests:webkit": "playwright test tests/first.spec.ts --grep=@IntegrationTest --config=playwright.config.ts --project=Webkit --reporter=html",
+    "tests:e2e": "playwright test tests/e2e/e2e.spec.ts --grep=@E2ETest --config=playwright.config.ts --project=Chromium --reporter=html",
+    "tests:visual:chrome": "playwright test tests/visual/visual.spec.ts --grep=@VisualTest --config=visual.config.ts --project=Chromium --reporter=html",
+    "tests:visual:firefox": "playwright test tests/visual/visual.spec.ts --grep=@VisualTest --config=visual.config.ts --project=Firefox --reporter=html",
+    "tests:visual:webkit": "playwright test tests/visual/visual.spec.ts --grep=@VisualTest --config=visual.config.ts --project=Webkit --reporter=html",
+    "tests:visual:desktop:safari": "playwright test tests/visual/visual.spec.ts --grep=@VisualTest --config=visual.config.ts --project=webkit --reporter=html",
+    "tests:visual:chrome:update": "playwright test tests/visual/visual.spec.ts --grep=@VisualTest --config=visual.config.ts --project=Chromium --reporter=html --update-snapshot",
+    "tests:visual:firefox:update": "playwright test tests/visual/visual.spec.ts --grep=@VisualTest --config=visual.config.ts --project=Firefox --reporter=html --update-snapshot",
+    "tests:visual:webkit:update": "playwright test tests/visual/visual.spec.ts --grep=@VisualTest --config=visual.config.ts --project=Webkit --reporter=html --update-snapshot",
+    "tests:visual:chrome:retry": "playwright test tests/visual/visual.spec.ts --grep=@VisualTest --config=visual.config.ts --project=Chromium --reporter=html --retries=2",
+    "tests:visual:chrome:custom:reporter": "playwright test tests/visual/visual.spec.ts --grep=@VisualTest --config=visual.config.ts --project=Chromium --reporter=reporter.ts",
+    "test:percy": "percy exec:start && npm run tests:visual:chrome",
+    "jenkins:server": "java -jar .\\jenkins.war -httpPort=8080 --enable-future-java",
+    "device:iphone11": "playwright open --device=\"iPhone 11\" https://www.chevrolet.com/ownercenter/onstar/learn",
+    "pdf:page": "playwright pdf wikipedia.org unauth-shop.pdf",
+    "device:screenshot": "playwright screenshot --device=\"iPhone 11\" --color-scheme=dark --wait-for-timeout=3000 twitter.com twitter-iphone.png",
+    "device:screenshot1": "playwright screenshot --device=\"iPhone 11\" --color-scheme=dark --wait-for-timeout=3000 https://www.chevrolet.com/ownercenter/onstar/learn shop-iphone.png",
+    "timezone:lang": "playwright open --timezone=\"Europe/Rome\" --lang=\"it-IT\" google.com",
+    "cucumber:test": "./node_modules/.bin/cucumber-js --require cucumber.js --require step-definitions/**/*.js -f json:cucumber_report.json",
+    "cucumber:report": "node reporter.js",
+    "cucumber:test-ts": "cucumber-js test"
+  },
+  "author": "Mahesh Bhosale",
+  "license": "ISC",
+  "dependencies": {
+    "chai": "^5.1.1",
+    "cucumber-html-reporter": "^7.1.1",
+    "playwright": "^1.44.1",
+    "prettier": "^3.2.5"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.8.0",
+    "@percy/cli": "^1.28.7",
+    "@percy/playwright": "^1.0.5",
+    "@playwright/test": "^1.44.1",
+    "ts-node": "^10.9.2"
+  }
+}
